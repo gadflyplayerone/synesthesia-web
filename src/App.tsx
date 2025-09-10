@@ -4,8 +4,7 @@ import { useMicAnalyser } from './audio/useMicAnalyser'
 
 export default function App() {
   const [autostart, setAutostart] = useState(true)
-  const [smoothing, setSmoothing] = useState(0.85)
-  const [sensitivity, setSensitivity] = useState(2.0)
+  const [sensitivity, setSensitivity] = useState(3.0)
   const [speed, setSpeed] = useState(2.5)
   const [running, setRunning] = useState(false)
   const [uiHidden, setUiHidden] = useState(true)
@@ -81,7 +80,6 @@ export default function App() {
       <Visualizer
         className="canvas"
         analyser={analyser}
-        smoothing={smoothing}
         sensitivity={sensitivity}
         speed={speed}
       />
