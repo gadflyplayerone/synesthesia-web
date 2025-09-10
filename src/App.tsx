@@ -42,16 +42,6 @@ export default function App() {
     <div className="wrap">
       {!uiHidden && (
         <div className="topbar">
-          <div className="actions">
-            {!running ? (
-              <button onClick={handleStart}>Enable Microphone</button>
-            ) : (
-              <>
-                <button className="secondary" onClick={handleStop}>Stop</button>
-              </>
-            )}
-            <button onClick={() => setUiHidden(true)}>Hide UI</button>
-          </div>
           <div className="controls">
             <label>
               Smoothing
@@ -67,6 +57,16 @@ export default function App() {
                 onChange={e => setSensitivity(parseFloat(e.target.value))}
               />
             </label>
+          </div>
+          <div className="actions">
+            {!running ? (
+              <button onClick={handleStart}>Enable Microphone</button>
+            ) : (
+              <>
+                <button className="secondary" onClick={handleStop}>Stop</button>
+              </>
+            )}
+            <button onClick={() => setUiHidden(true)}>Hide UI</button>
           </div>
         </div>
       )}
