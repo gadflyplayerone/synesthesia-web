@@ -390,7 +390,6 @@ ctx.restore();
   ctx.textBaseline = "alphabetic";
   ctx.fillText(`fps: ${fps.toFixed(2)}`, W - 95, H - 20);
   ctx.fillText(`fft max: ${fft_max.toFixed(2)}`, 25, H - 20);
-  ctx.fillText(`amplitude: ${amplitude.toFixed(2)}`, 25, H - 35);
-  ctx.fillText(`peak frequency: ${peak_frequency.toFixed(2)}`, 25, H - 50);
+  ctx.fillText(`peak frequency: ${peak_frequency.toFixed(2)}`, 25, H - 35);
   ctx.restore();
 }
