@@ -7,7 +7,7 @@ export default function App() {
   const [smoothing, setSmoothing] = useState(0.85)
   const [sensitivity, setSensitivity] = useState(1.0)
   const [running, setRunning] = useState(false)
-  const [uiHidden, setUiHidden] = useState(false)
+  const [uiHidden, setUiHidden] = useState(true)
 
   const analyser = useMicAnalyser({
     fftSize: 1024,
@@ -42,7 +42,7 @@ export default function App() {
     <div className="wrap">
       {!uiHidden && (
         <div className="topbar">
-          <div className="brand">Synesthesia · AS3SIX</div>
+          <div className="brand">Synesthesia</div>
           <div className="controls">
             <label>
               Smoothing
