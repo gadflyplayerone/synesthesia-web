@@ -5,7 +5,8 @@ import { useMicAnalyser } from './audio/useMicAnalyser'
 export default function App() {
   const [autostart, setAutostart] = useState(true)
   const [smoothing, setSmoothing] = useState(0.85)
-  const [sensitivity, setSensitivity] = useState(1.0)
+  const [sensitivity, setSensitivity] = useState(2.0)
+  const [speed, setSpeed] = useState(2.5)
   const [running, setRunning] = useState(false)
   const [uiHidden, setUiHidden] = useState(true)
 
@@ -44,15 +45,15 @@ export default function App() {
         <div className="topbar">
           <div className="controls">
             <label>
-              Smoothing
-              <input type="range" min="0" max="0.98" step="0.01"
-                value={smoothing}
-                onChange={e => setSmoothing(parseFloat(e.target.value))}
+              Speed
+              <input type="range" min="0.0" max="1.0" step="0.01"
+                value={speed}
+                onChange={e => setSpeed(parseFloat(e.target.value))}
               />
             </label>
             <label>
               Sensitivity
-              <input type="range" min="0.2" max="3.0" step="0.05"
+              <input type="range" min="0.2" max="3.5" step="0.05"
                 value={sensitivity}
                 onChange={e => setSensitivity(parseFloat(e.target.value))}
               />
@@ -82,6 +83,7 @@ export default function App() {
         analyser={analyser}
         smoothing={smoothing}
         sensitivity={sensitivity}
+        speed={speed}
       />
 
       <div className="hint">
