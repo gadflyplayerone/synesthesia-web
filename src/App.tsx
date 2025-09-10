@@ -42,7 +42,7 @@ export default function App() {
     <div className="wrap">
       {!uiHidden && (
         <div className="topbar">
-          <div className="brand">Synesthesia · Web</div>
+          <div className="brand">Synesthesia · AS3SIX</div>
           <div className="controls">
             <label>
               Smoothing
