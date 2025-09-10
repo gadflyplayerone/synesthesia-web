@@ -86,7 +86,7 @@ export default function App() {
 
       <div className="hint">
         {running
-          ? "Speak, sing, or play music near the mic · Best in Chrome/Edge/Firefox · Press H to toggle UI"
+          ? "Speak, sing, or play music near the mic · Your audio never leaves the browser · Press H to toggle UI"
           : "Click 'Enable Microphone' to begin · Your audio never leaves the browser · Press H to toggle UI"}
       </div>
     </div>
