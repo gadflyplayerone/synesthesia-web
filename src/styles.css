@@ -109,3 +109,22 @@ button.secondary { background: #1a1e26; color: var(--muted); }
   .controls { left: 8px; right: 8px; width: auto; }
   .hint { font-size: 11px; padding: 0 8px; }
 }
+
+/* Move "Show UI" toggle to bottom-left (and respect iOS safe areas) */
+.at-bottom-left {
+  position: fixed;
+  left: calc(env(safe-area-inset-left, 0px) + 26px);
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 26px);
+  top: auto;              /* ensure any prior 'top' is neutralized */
+  z-index: 7;             /* above canvas, below modals */
+}
+
+/* Optional: compact size on small screens */
+@media (max-width: 640px) {
+  .at-bottom-left {
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+}
+

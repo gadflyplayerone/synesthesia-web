@@ -45,7 +45,7 @@ export default function App() {
   return (
     <div className="wrap">
       {!uiHidden && (
-        <div className="topbar">
+        <div className="topbar at-bottom-left">
           <div className="controls">
             <label>
               Speed
@@ -76,7 +76,7 @@ export default function App() {
       )}
 
       {uiHidden && (
-        <button className="floating-toggle" onClick={() => setUiHidden(false)}>
+        <button className="floating-toggle at-bottom-left" onClick={() => setUiHidden(false)}>
           Show UI (H)
         </button>
       )}
