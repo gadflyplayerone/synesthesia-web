@@ -75,12 +75,6 @@ export default function App() {
         </div>
       )}
 
-      {uiHidden && (
-        <button className="floating-toggle at-bottom-left" onClick={() => setUiHidden(false)}>
-          Show UI (H)
-        </button>
-      )}
-
       {proMode ? (
         <VisualizerPro className="canvas" analyser={analyser} />
       ) : (
