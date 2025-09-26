@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/audio/usemicanalyser.ts","./src/components/visualizer.tsx"],"version":"5.9.2"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/audio/pitch.ts","./src/audio/usemicanalyser.ts","./src/components/visualizer.tsx","./src/components/visualizerpro.tsx","./src/visuals/boids.ts","./src/visuals/sparkles.ts"],"version":"5.9.2"}
