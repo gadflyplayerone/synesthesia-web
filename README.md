@@ -11,3 +11,18 @@ npm run dev
 # or build:
 npm run build
 ```
+
+
+## ✨ What's New (Visualizer Pro)
+- **Swarm of Boids** that flock to a moving target derived from the **predicted next note**.
+- **Beat‑synced sparkles** using **spectral flux** for onsets.
+- **Dual pitch engine** (autocorrelation + simplified cepstrum “second‑order FFT”) fused by confidence.
+- **Orb + Rays mode** that turns the spectrum into a radial field.
+- Live HUD showing **current pitch** and **predicted next** note.
+
+### Dev
+```bash
+npm install
+npm run dev
+# Toggle Pro/Classic via the checkbox in the UI.
+```

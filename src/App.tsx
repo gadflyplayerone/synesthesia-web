@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react'
 import Visualizer from './components/Visualizer'
+
+import VisualizerPro from './components/VisualizerPro'
+
 import { useMicAnalyser } from './audio/useMicAnalyser'
 
 export default function App() {
@@ -8,6 +11,7 @@ export default function App() {
   const [speed, setSpeed] = useState(2.5)
   const [running, setRunning] = useState(false)
   const [uiHidden, setUiHidden] = useState(true)
+  const [proMode, setProMode] = useState(true)
 
   const analyser = useMicAnalyser({
     fftSize: 1024,
@@ -77,12 +81,16 @@ export default function App() {
         </button>
       )}
 
-      <Visualizer
-        className="canvas"
-        analyser={analyser}
-        sensitivity={sensitivity}
-        speed={speed}
-      />
+      {proMode ? (
+        <VisualizerPro className="canvas" analyser={analyser} />
+      ) : (
+        <Visualizer
+          className="canvas"
+          analyser={analyser}
+          sensitivity={sensitivity}
+          speed={speed}
+        />
+      )}
 
       <div className="hint">
         {running

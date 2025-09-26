@@ -69,3 +69,43 @@ button.secondary { background: #1a1e26; color: var(--muted); }
   box-shadow: 0 6px 16px rgba(0,0,0,0.35);
   cursor: pointer;
 }
+
+/* === Pro Visualizer UI === */
+.mode-toggle {
+  position: absolute;
+  top: 12px; right: 12px;
+  display: flex; gap: 8px;
+  z-index: 10;
+}
+.mode-toggle button {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+  cursor: pointer;
+}
+.mode-toggle button:hover { background: rgba(0,0,0,0.6); }
+
+.hint { bottom: 10px; }
+
+
+/* Debug panel spacing handled by shifting mode-toggle when open (inline style).
+   Ensure z-index layering so overlays don't collide visually. */
+.mode-toggle { z-index: 6; }
+.canvas { z-index: 1; }
+
+
+/* Active button state & consistent placement */
+.mode-toggle { position: absolute; top: 12px; right: 12px; display: flex; gap: 8px; z-index: 6; flex-wrap: wrap; max-width: 90vw; }
+.mode-toggle button.active { outline: 2px solid var(--brand); box-shadow: 0 0 0 2px rgba(0,0,0,0.2) inset; }
+
+/* Mobile responsiveness */
+@media (max-width: 640px) {
+  .mode-toggle { gap: 6px; right: 8px; top: 8px; }
+  .mode-toggle button { padding: 6px 8px; font-size: 12px; }
+  .controls { left: 8px; right: 8px; width: auto; }
+  .hint { font-size: 11px; padding: 0 8px; }
+}
