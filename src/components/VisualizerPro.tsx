@@ -721,7 +721,7 @@ export default function VisualizerPro({ analyser, className }: Props) {
             sum += v;
           }
           const mean = sum / wf.length;
-          const orbAmp = 3.75;
+          const orbAmp = 3.0;
 
           ctx.beginPath();
           const amp = orbR * orbAmp;
