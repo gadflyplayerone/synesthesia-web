@@ -650,7 +650,7 @@ export default function VisualizerPro({ analyser, className }: Props) {
         }
 
         // ---- Rays around the orb using *smoothed* Order-2 (cepstrum) values ----
-        const fftOffset = 50;
+        const fftOffset = 100;
         if (order2_for_pulse) {
           const N = order2_for_pulse.length - 2 * fftOffset;
 
@@ -740,10 +740,10 @@ export default function VisualizerPro({ analyser, className }: Props) {
         }
 
         // 2) White bars across the center from order-2 (normalized)
-        const whiteOffsetX = 1;
+        const whiteOffsetX = 20;
         if (order2_for_pulse) {
           let maxV = 1e-6;
-          for (let i = whiteOffsetX; i < order2_for_pulse.length; i++) {
+          for (let i = whiteOffsetX; i < order2_for_pulse.length - 2 * whiteOffsetX; i++) {
             const v = order2_for_pulse[i];
             if (isFinite(v) && v > maxV) maxV = v;
           }
@@ -1407,7 +1407,7 @@ export default function VisualizerPro({ analyser, className }: Props) {
     >
       <canvas ref={canvasRef} style={{ width: "100%", height: "100%" }} />
       <div style={toolbarStyle}>
-        <button
+        {/* <button
           style={combo ? btnActive : btnBase}
           onClick={() => setCombo(!combo)}
         >
@@ -1426,7 +1426,7 @@ export default function VisualizerPro({ analyser, className }: Props) {
           onClick={() => setMode("ORB")}
         >
           Orb Only
-        </button>
+        </button> */}
 
         <button
           style={debugOpen ? btnActive : btnBase}
