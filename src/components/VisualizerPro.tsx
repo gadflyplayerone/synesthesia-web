@@ -32,6 +32,8 @@ type Swarm = {
   targetPhase: number; // to spread targets
 };
 
+type FpsOption = "15" | "30" | "60" | "MAX";
+
 // ---- Global debug/state snapshot (updated every frame) ----
 export const VIS = {
   // timing
@@ -129,6 +131,46 @@ export default function VisualizerPro({ analyser, className }: Props) {
     color: "rgb(255,215,100)",
   };
 
+  const settingsWrap: React.CSSProperties = {
+    position: "absolute",
+    right: 16,
+    bottom: 16,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-end",
+    gap: 6,
+    padding: "10px 12px",
+    background: "rgba(8,11,31,0.72)",
+    border: "1px solid rgba(255,255,255,0.12)",
+    borderRadius: 14,
+    backdropFilter: "blur(8px)",
+    WebkitBackdropFilter: "blur(8px)",
+    zIndex: 1000,
+    color: "#fff",
+    fontSize: 13,
+  };
+
+  const selectStyle: React.CSSProperties = {
+    all: "unset" as any,
+    appearance: "none",
+    padding: "6px 28px 6px 10px",
+    borderRadius: 10,
+    border: "1px solid rgba(255,255,255,0.18)",
+    background:
+      "linear-gradient(135deg, rgba(22,26,46,0.85) 0%, rgba(35,40,60,0.85) 100%)",
+    fontSize: 13,
+    fontWeight: 600,
+    letterSpacing: 0.2 as any,
+    cursor: "pointer",
+    color: "#fff",
+  };
+
+  const selectLabel: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+  };
+
   const SPEED_ORDER = 100.0; // nonlinear mapping order for speed
   const POP_COOLDOWN_MS = 100; // cooldown for pop effect
 
@@ -145,9 +187,15 @@ export default function VisualizerPro({ analyser, className }: Props) {
   const [mode, setMode] = useState<"SWARM" | "ORB" | "RAYS">("SWARM");
   // Track whether the mic/analyser is currently active (driven by AudioContext state)
   const [micActive, setMicActive] = useState(true);
+  const [fpsSetting, setFpsSetting] = useState<FpsOption>("60");
+  const fpsSettingRef = useRef<FpsOption>("60");
 
   // Keep the screen awake while this component is mounted/active
   useWakeLock(true);
+
+  useEffect(() => {
+    fpsSettingRef.current = fpsSetting;
+  }, [fpsSetting]);
 
   // dynamics state for the new swarm logic
   const orderEnergyPrevRef = useRef({ e1: 0, e2: 0, e3: 0, e4: 0, e5: 0 });
@@ -423,6 +471,13 @@ export default function VisualizerPro({ analyser, className }: Props) {
     const loop = () => {
       raf = requestAnimationFrame(loop);
       const now = performance.now();
+      const target =
+        fpsSettingRef.current === "MAX"
+          ? 0
+          : 1000 / parseInt(fpsSettingRef.current, 10);
+      if (target > 0 && now - last < target) {
+        return;
+      }
       const dt = (now - last) / 1000;
       last = now;
       setFps((prev) => lerp(prev, 1 / Math.max(1e-3, dt), 0.1));
@@ -1443,6 +1498,23 @@ export default function VisualizerPro({ analyser, className }: Props) {
         >
           {micActive ? "Stop Mic" : "Start Mic"}
         </button>
+      </div>
+
+      <div style={settingsWrap}>
+        <div>FPS: {Math.round(fps)}</div>
+        <label style={selectLabel}>
+          Limit
+          <select
+            value={fpsSetting}
+            onChange={(e) => setFpsSetting(e.target.value as FpsOption)}
+            style={selectStyle}
+          >
+            <option value="15">15</option>
+            <option value="30">30</option>
+            <option value="60">60</option>
+            <option value="MAX">Max</option>
+          </select>
+        </label>
       </div>
     </div>
   );
